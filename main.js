@@ -13,3 +13,10 @@ const projectController = new DOMController(document.querySelector(".projects-co
 const projects = projectHandler.getAllProjects();
 
 projectController.renderProjects(projects);
+
+// LOCAL STORAGE CLEANER
+const localStorageButton = document.querySelector("#local");
+localStorageButton.addEventListener("click", () => {
+  localStorage.clear();
+  location.reload();
+});
