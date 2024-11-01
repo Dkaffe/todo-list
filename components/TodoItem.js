@@ -5,22 +5,31 @@ class ToDoItem {
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
+    this.finished = false;
   }
 }
 
 class ToDoItemHandler {
   // Method: Create a new Todo Item
-  createToDo(title, description, dueDate, priority) {
+  createToDo(project, title, description, dueDate, priority) {
     const id = Date.now().toString();
     const toDo = new ToDoItem(id, title, description, dueDate, priority);
-    return toDo;
+    project.toDoItems.push(toDo);
   }
 
   // Method: Update existing Todo Item
   updateToDo(toDo, title, description, dueDate, priority) {
-    toDo.title = title;
-    toDo.description = description;
-    toDo.dueDate = dueDate;
-    toDo.priority = priority;
+    title ? (toDo.title = title) : toDo.title;
+    description ? (toDo.description = description) : toDo.description;
+    dueDate ? (toDo.dueDate = dueDate) : toDo.dueDate;
+    priority ? (toDo.priority = priority) : toDo.priority;
+  }
+
+  // Method: Finish Todo
+  finishToDo(toDo) {
+    toDo.finished = true;
   }
 }
+
+const toDoItemHandler = new ToDoItemHandler();
+export { toDoItemHandler };

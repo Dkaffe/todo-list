@@ -1,9 +1,9 @@
 class Project {
-  constructor(id, title, dueDate, toDoItems) {
+  constructor(id, title, dueDate) {
     this.id = id;
     this.title = title;
     this.dueDate = dueDate;
-    this.toDoItems = toDoItems;
+    this.toDoItems = [];
   }
 }
 
@@ -26,9 +26,13 @@ class ProjectHandler {
     const project = new Project(id, title, dueDate);
     this.projects.push(project);
 
-    // Update local storage
-    const projectJSON = JSON.stringify(this.projects);
-    localStorage.setItem("projects", projectJSON);
+    this.saveProject();
+    return project;
+  }
+
+  //   Method: Get all projects
+  getAllProjects() {
+    return this.projects;
   }
 
   // Method: Get existing project
@@ -40,7 +44,7 @@ class ProjectHandler {
   // Method: Delete existing project
   deleteProject(id) {
     this.projects = this.projects.filter((project) => project.id !== id);
-    localStorage.setItem("projects", JSON.stringify(this.projects));
+    this.saveProject();
   }
 
   // Method: Update existing project
@@ -54,6 +58,12 @@ class ProjectHandler {
   removeToDoFromProject(id, todo) {
     const project = this.getProject(id);
     project.toDoItems = project.toDoItems.filter((item) => item !== todo);
+    this.saveProject();
+  }
+
+  // Method: Save current project state
+  saveProject() {
+    localStorage.setItem("projects", JSON.stringify(this.projects));
   }
 }
 
