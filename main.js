@@ -13,6 +13,7 @@ const projectController = new DOMController(document.querySelector(".projects-co
 const projects = projectHandler.getAllProjects();
 
 projectController.renderProjects(projects);
+projectController.expandArticleFlag(true);
 
 // LOCAL STORAGE CLEANER
 const localStorageButton = document.querySelector("#local");
