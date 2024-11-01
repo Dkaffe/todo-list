@@ -26,10 +26,15 @@ class DOMController {
         ul.appendChild(li);
       }
 
+      // Button to Create new Todo Items
+      const button = document.createElement("button");
+      button.innerText = "+";
+
       // Append children
       article.appendChild(h3);
       article.appendChild(h4);
       article.appendChild(ul);
+      article.appendChild(button);
 
       this.root.appendChild(article);
     }
